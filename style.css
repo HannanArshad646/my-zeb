@@ -1,0 +1,670 @@
+/* Modal Styling */
+/* 🔹 فل سکرین بیک گراؤنڈ */
+.lightbox {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.85);
+  text-align: center;
+  padding: 40px;
+}
+
+/* 🔹 جب کلک ہو تو ظاہر ہو */
+.lightbox:target {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 🔹 بڑی تصویر */
+.lightbox img {
+  max-width: 95vw;
+  max-height: 95vh;
+  object-fit: contain;  /* ✔ تصویر کروپ نہیں ہوگی */
+  border-radius: 10px;
+  box-shadow: 0 0 20px #fff;
+}
+
+/* 🔹 Close (باہر کلک پر بند ہو) */
+.lightbox .close {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: zoom-out;
+}
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.8);
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 20px;
+  width: 90%;
+  max-width: 500px;
+  text-align: center;
+  border-radius: 10px;
+  color: #000;
+}
+
+.modal-content img {
+  width: 100%;
+  max-height: 300px;
+  object-fit: contain;
+  margin-bottom: 15px;
+}
+
+.close-btn {
+  float: right;
+  font-size: 24px;
+  cursor: pointer;
+  color: #333;
+}
+.product-box {
+  position: relative;
+  width: 100%; /* آپ کے مطابق سائز */
+  height: 700px;
+  overflow: hidden;
+  background-image: url(images/logo-image.png);
+}
+
+.product-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* تصویر پوری جگہ لے لے گی */
+  display: block;
+  background-image:url(images/logo-image.png); ;
+  filter: brightness(0.6);
+}
+
+.product-button {
+  position: absolute;
+  top: 30%;
+  left: 11%;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #000;
+  padding: 8px 15px;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.product-box:hover .product-button {
+  opacity: 1;
+}
+.logo-overlay {
+  position: absolute;
+  top: 0%;
+  width: 400px;
+
+}
+
+/* ---------- Base / Reset ---------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  color: #ffffff;
+  background: #121a26;
+  line-height: 1.5;
+}
+
+.h1 {
+  font-size: clamp(34px, 6vw, 56px);
+  font-weight: 900;
+  margin: 8px 0 4px;
+}
+.sub {
+  color: #cbd5e1;
+  font-size: clamp(14px, 2.2vw, 18px);
+  margin-bottom: 16px;
+}
+.title {
+  font-weight: 900;
+  font-size: clamp(28px, 4.5vw, 40px);
+  margin-bottom: 8px;
+}
+.crumbs {
+  color: #e2e8f0;
+}
+
+/* ---------- Hero (full viewport bg) ---------- */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.25)),
+    url("images/hero-shelves.jpg") center/cover no-repeat;
+}
+
+/* ---------- Strip (small header) ---------- */
+.strip {
+  width: 100%;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.25)),
+    url("images/hero-shelves.jpg") center/cover no-repeat;
+}
+.strip .strip-inner {
+  width: min(1200px, 92vw);
+  margin: 0 auto;
+  padding: 80px 0 40px;
+  text-align: center;
+}
+
+/* ---------- Grid ---------- */
+.grid {
+  display: grid;
+  gap: 16px;
+}
+.products {
+  grid-template-columns: repeat(4, 1fr);
+}
+@media (max-width: 1100px) {
+  .products {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 760px) {
+  .products {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 520px) {
+  .products {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- Cards ---------- */
+
+.products {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.card {
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 14px;
+  overflow: hidden;
+  color: #fff;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 320px;
+  background: none; /* fixed height for all cards */
+}
+
+.card img {
+  width: 100%;
+  height: 350px;
+  object-fit: contain; /* image poori dikhai degi without cut */
+  padding: 10px;
+}
+
+.card-content {
+  padding: 16px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #204922, #063277);
+  color: #fff;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+yahan par kuch ana hai
+/* ----- Reset & Base ----- */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+body {
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue",
+    Arial, "Noto Sans", "Liberation Sans", sans-serif;
+  color: #ffffff;
+  background: #000000;
+  overflow-x: hidden;
+}
+
+/* ----- Hero Background ----- */
+.hero {
+  position: relative;
+  min-height: 100dvh;
+  width: 100%;
+  background: url("../assets/images/bg-wall.jpg") center/cover no-repeat fixed;
+  display: grid;
+  place-items: stretch;
+  isolation: isolate;
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgb(0, 0, 0);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ----- Navbar ----- */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  width: 100%;
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.32);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+  animation: fadeSlide 0.5s ease both;
+}
+.nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+}
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: #0f172a;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+.brand img {
+  height: 36px;
+  width: auto;
+  display: block;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.15));
+}
+
+/* Menu */
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.menu > li {
+  position: relative;
+}
+.link,
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 10px 12px;
+  border-radius: 10px;
+  transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+  color: #0f172a;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+.link:hover,
+.btn:hover {
+  transform: translateY(-1px);
+  background: rgb(255, 255, 255);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+/* Dropdown */
+.dropdown-toggle {
+  cursor: pointer;
+}
+.dropdown {
+  position: absolute;
+  top: 48px;
+  left: 0;
+  min-width: 200px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 14px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+  padding: 8px;
+  display: none;
+  backdrop-filter: blur(8px);
+}
+.dropdown a {
+  display: block;
+  padding: 10px 12px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: #0f172a;
+  font-weight: 600;
+}
+.dropdown a:hover {
+  background: rgba(15, 23, 42, 0.06);
+}
+
+/* Show on hover (desktop) */
+@media (hover: hover) and (pointer: fine) {
+  .menu > li:hover > .dropdown {
+    display: block;
+  }
+}
+
+/* Right side Contact button */
+.contact {
+  margin-left: 6px;
+  border: 1px solid rgba(15, 23, 42, 0.18);
+  background: rgba(255, 255, 255, 0.85);
+}
+
+/* ----- Mobile ----- */
+.hamburger {
+  display: none;
+  background: transparent;
+  border: 0;
+  padding: 10px;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+}
+@media (max-width: 920px) {
+  .hamburger {
+    display: inline-flex;
+  }
+  .menu {
+    display: none;
+    position: fixed;
+    inset: 64px 12px auto 12px;
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.94);
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-radius: 14px;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+  }
+  .menu.show {
+    display: flex;
+  }
+  .dropdown {
+    position: static;
+    display: none;
+    box-shadow: none;
+    border: 0;
+    padding: 0;
+    background: transparent;
+  }
+  .menu .open .dropdown {
+    display: block;
+  }
+  .contact {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Spacer (no hero text) */
+.spacer {
+  height: 30vh;
+}
+@media (max-width: 600px) {
+  .spacer {
+    height: 22vh;
+  }
+}
+
+/* Animations */
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+nav {
+  padding: 40px 20px;
+}
+
+.mission-section,
+.departments,
+.cut-pack,
+.gallery,
+.container {
+  padding: 50px 20px;
+  animation: fadeInUp 1.5s ease-in;
+}
+
+img {
+  max-width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+  transition: transform 0.5s ease;
+}
+img:hover {
+  transform: scale(1.05);
+}
+
+.departments h2,
+.cut-pack h2,
+.gallery h2,
+.container h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2rem;
+  color: #ffffff;
+  animation: zoomIn 1.2s ease;
+}
+
+.department {
+  background: rgba(61, 139, 65, 0.418);
+  border: 1px solid #00ffea;
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.05);
+  animation: slideInUp 1s ease;
+  transition: transform 0.4s ease;
+}
+.department:hover {
+  transform: translateY(-5px);
+}
+
+.cut-pack p {
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+}
+.cut-pack strong {
+  color: #00ffc8;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+.gallery-grid img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease;
+}
+
+.container h1 {
+  font-size: 2.3rem;
+}
+.section {
+  margin-top: 30px;
+  background: rgb(0, 0, 0);
+  padding: 20px;
+  border-radius: 10px;
+  animation: fadeIn 1.2s ease;
+}
+a {
+  color: #00ffe0;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* === Modal Styling === */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-content {
+  background-color: #173d50;
+  margin: 5% auto;
+  padding: 30px;
+  border: 1px solid #00ffe0;
+  width: 90%;
+  max-width: 500px;
+  border-radius: 12px;
+  color: #fff;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+  animation: fadeInUp 0.5s ease-out;
+  text-align: center;
+}
+.modal-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+.modal-content h3 {
+  font-size: 1.6rem;
+  margin: 10px 0;
+  color: #00eaff;
+}
+.modal-content p {
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 2rem;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+/* === Animations === */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  0% {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+  .welcome-text {
+    font-size: 1.7rem;
+  }
+  .departments h2,
+  .cut-pack h2,
+  .gallery h2,
+  .container h1 {
+    font-size: 1.6rem;
+  }
+
+  .modal-content {
+    width: 50%;
+  }
+}
